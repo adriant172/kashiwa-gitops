@@ -73,3 +73,10 @@ jobs:
           # or that never expires.)
           ###########################################################
           FLEET_API_TOKEN: ${{ secrets.FLEET_API_TOKEN }}
+
+          ###########################################################
+          # Where Fleet POSTs every activity (see webhook_settings in
+          # default.yml). Kept as a secret because anyone with this
+          # URL can read the activity feed.
+          ###########################################################
+          FLEET_ACTIVITIES_WEBHOOK_URL: ${{ secrets.FLEET_ACTIVITIES_WEBHOOK_URL }}
