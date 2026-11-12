@@ -1,0 +1,6 @@
+- name: macOS 27 beta testers
+  description: Hand-picked hosts for macOS 27 beta testing
+  label_membership_type: manual
+  # `hosts` is intentionally omitted: GitOps then leaves membership alone,
+  # so testers added in the Fleet UI stay put. Setting `hosts: []` would
+  # remove everyone on every GitOps run.
