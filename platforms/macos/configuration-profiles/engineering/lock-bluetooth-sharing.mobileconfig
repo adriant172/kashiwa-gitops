@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>PayloadContent</key>
+  <array>
+    <dict>
+      <key>PayloadType</key><string>com.apple.applicationaccess</string>
+      <key>PayloadIdentifier</key><string>com.kashiwa.engineering.lock-bluetooth-sharing.restrictions</string>
+      <key>PayloadUUID</key><string>704D7DC7-8210-4E5B-9554-8815B9D68BE4</string>
+      <key>PayloadVersion</key><integer>1</integer>
+      <key>PayloadDisplayName</key><string>Restrictions: Bluetooth Sharing</string>
+      <key>allowBluetoothSharingModification</key><false/>
+    </dict>
+  </array>
+  <key>PayloadType</key><string>Configuration</string>
+  <key>PayloadIdentifier</key><string>com.kashiwa.engineering.lock-bluetooth-sharing</string>
+  <key>PayloadUUID</key><string>2852CB29-BB06-4E5C-8FA1-98FF37621E7A</string>
+  <key>PayloadVersion</key><integer>1</integer>
+  <key>PayloadDisplayName</key><string>Engineering - Lock Bluetooth Sharing setting</string>
+  <key>PayloadDescription</key><string>Prevents users from changing the Bluetooth Sharing setting in System Settings (macOS 14+). Fleet's "Bluetooth Sharing disabled (Engineering)" policy turns sharing off.</string>
+  <key>PayloadScope</key><string>System</string>
+  <key>PayloadRemovalDisallowed</key><true/>
+</dict>
+</plist>
