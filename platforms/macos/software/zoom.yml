@@ -1,0 +1,12 @@
+# Zoom for macOS, from Zoom's public IT installer.
+#
+# The `latest` URL redirects to the current release on Zoom's CDN
+# (7.2.5.90525 as of 2026-11-12). It's a universal .pkg: Intel and
+# Apple silicon get the same file. Fleet re-checks the URL on each
+# GitOps run and uploads a new version when Zoom publishes one.
+- url: https://zoom.us/client/latest/ZoomInstallerIT.pkg
+  display_name: Zoom
+  # Runs after every Zoom install (setup, self-service, or automation)
+  # to apply our Zoom configuration. Path is relative to this file.
+  post_install_script:
+    path: ./zoom-post-install.sh

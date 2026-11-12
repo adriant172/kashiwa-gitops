@@ -211,15 +211,6 @@ policies:
 software:
   fleet_maintained_apps:
     # macOS apps
-    - slug: zoom/darwin # Zoom for macOS
-      self_service: true      # available in Fleet Desktop > Self-service
-      setup_experience: true  # installed on brand-new Macs during setup
-      categories:
-        - Communication
-      # Runs after every Zoom install (setup, self-service, or automation)
-      # to apply our Zoom configuration.
-      post_install_script:
-        path: ../platforms/macos/software/zoom-post-install.sh
     # …
     # - slug: slack/darwin # Slack for macOS
     #   self_service: true
@@ -241,7 +232,11 @@ software:
 
   packages: # Custom packages (if any)
     # macOS custom packages
-    # …
+    - path: ../platforms/macos/software/zoom.yml # Zoom (Zoom's public IT installer)
+      self_service: true      # available in Fleet Desktop > Self-service
+      setup_experience: true  # installed on brand-new Macs during setup
+      categories:
+        - Communication
 
     # Windows custom packages
     # …
