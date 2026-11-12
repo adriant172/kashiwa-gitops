@@ -100,10 +100,16 @@ controls:
   #   • https://fleetdm.com/docs/configuration/yaml-files#windows-updates
   #   • https://fleetdm.com/guides/enforce-os-updates
   ###########################################################
-  # macos_updates:
-  #   deadline: "2030-04-01"
-  #   minimum_version: "26.0"
-  #   update_new_hosts: true
+  #
+  # macOS: every Workstations Mac must be on at least macOS 26.5 by the
+  # end of 2026. Apple only enforces versions it still offers, and 26.5
+  # is no longer offered, so the target is 26.7.3 (newest available as
+  # of 2026-11-12). Anything at 26.7.3 or later satisfies the 26.5 goal.
+  ###########################################################
+  macos_updates:
+    deadline: "2026-12-31"
+    minimum_version: "26.7.3"
+    update_new_hosts: true
   # windows_updates:
   #   deadline_days: 7
   #   grace_period_days: 2
