@@ -74,6 +74,11 @@ controls:
       - path: ../platforms/macos/configuration-profiles/engineering/lock-bluetooth-sharing.mobileconfig
         labels_include_any:
           - Engineering department
+      # Hold back new major macOS releases (e.g. macOS 27) for 90 days on
+      # every Mac except the hand-picked beta testers, who get them on day one.
+      - path: "../platforms/macos/declaration-profiles/non-beta/Defer major macOS updates.json"
+        labels_exclude_any:
+          - macOS 27 beta testers
   windows_settings:
     configuration_profiles:
       - paths: ../platforms/windows/configuration-profiles/*.xml
