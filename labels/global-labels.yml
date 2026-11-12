@@ -1,0 +1,6 @@
+- name: Engineering department
+  description: Hosts whose end user's IdP department is Engineering
+  label_membership_type: host_vitals
+  criteria:
+    vital: end_user_idp_department
+    value: Engineering
