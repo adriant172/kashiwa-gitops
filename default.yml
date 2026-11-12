@@ -21,7 +21,7 @@ org_settings:
     # Read more:
     #   • https://fleetdm.com/docs/configuration/yaml-files#org-info
     ###########################################################
-    org_name: Matts test org
+    org_name: Kashiwa Oak Works
 
   server_settings:
     ###########################################################
