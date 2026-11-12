@@ -33,6 +33,22 @@ org_settings:
     ###########################################################
     server_url: $FLEET_URL
 
+  webhook_settings:
+    ###########################################################
+    # POST every Fleet activity (admin actions, logins, script
+    # runs, software installs, etc.) to an external URL so the
+    # instance can be watched from the outside.
+    #
+    # The destination URL is a repository "secret" because anyone
+    # who has it can read the activity feed.
+    #
+    # Read more:
+    #   • https://fleetdm.com/docs/configuration/yaml-files#activities-webhook
+    ###########################################################
+    activities_webhook:
+      enable_activities_webhook: true
+      destination_url: $FLEET_ACTIVITIES_WEBHOOK_URL
+
   fleet_desktop:
     ###########################################################
     # Where end users land when they click the Fleet icon in their
