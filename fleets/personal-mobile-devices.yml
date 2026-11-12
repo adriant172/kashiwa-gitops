@@ -112,6 +112,12 @@ software:
       post_install_script:
         path: ../platforms/windows/software/cloudflare-warp-post-install.ps1
 
+    # Apparency for macOS (inspect app bundles: signing, notarization,
+    # entitlements). Opt-in from Fleet Desktop > Self-service; keeps the
+    # catalog's default category ("Developer tools").
+    - slug: apparency/darwin
+      self_service: true
+
   ###########################################################
   # Apps to make available from the Apple App Store or Google Play
   ###########################################################
