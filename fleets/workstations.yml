@@ -232,7 +232,11 @@ software:
 
   packages: # Custom packages (if any)
     # macOS custom packages
-    # …
+    - path: ../platforms/macos/software/zoom.yml # Zoom (Zoom's public IT installer)
+      self_service: true      # available in Fleet Desktop > Self-service
+      setup_experience: true  # installed on brand-new Macs during setup
+      categories:
+        - Communication
 
     # Windows custom packages
     # …
