@@ -24,9 +24,10 @@ name: "💻 Workstations"
 # failing a policy in this fleet. Fleet checks every hour
 # (`webhook_settings.interval` in default.yml).
 #
-# Fleet only accepts numeric policy IDs here. When you add a
-# policy to this fleet, add its ID below (find it in the Fleet
-# UI or with `fleetctl get policies --fleet "💻 Workstations"`).
+# Which policies alert is set on each policy with
+# `webhooks_and_tickets_enabled: true` (in platforms/*/policies/).
+# Add it to every new policy. Don't add `policy_ids` here: it's
+# deprecated, and fleetctl rejects mixing the two.
 ###########################################################
 settings:
   webhook_settings:
@@ -34,10 +35,6 @@ settings:
       enable_failing_policies_webhook: true
       destination_url: $FLEET_ACTIVITIES_WEBHOOK_URL
       host_batch_size: 0
-      policy_ids:
-        - 1  # macOS - All available software updates installed
-        - 31 # macOS - Bluetooth Sharing disabled (Engineering)
-        - 38 # Windows - Company wallpaper set
 
 controls:
   setup_experience:
