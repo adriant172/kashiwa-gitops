@@ -66,6 +66,9 @@ controls:
   # ```  
   ###########################################################
   apple_settings:
+    # FileVault on every Mac, with the recovery key escrowed to Fleet.
+    enable_disk_encryption: true
+    enable_escrow_disk_encryption_key: true
     configuration_profiles:
       - paths: ../platforms/macos/declaration-profiles/*.json
       - paths: ../platforms/macos/configuration-profiles/*.mobileconfig
@@ -86,13 +89,22 @@ controls:
   ###########################################################
   # Managed disk encryption
   #
-  # To enable and enforce disk encryption with key escrow on
-  # all supported platforms, uncomment `enable_disk_encryption`.
+  # macOS: FileVault enforced, key escrowed (apple_settings above).
+  # Linux: Fleet escrows the LUKS key of already-encrypted disks.
+  # Windows: intentionally not managed here (Windows MDM is off).
   #
   # Read more here:
   #   • https://fleetdm.com/guides/enforce-disk-encryption
   ###########################################################
-  # enable_disk_encryption: true
+  linux_settings:
+    enable_escrow_disk_encryption_key: true
+
+  ###########################################################
+  # Recovery Lock: puts macOS Recovery (recoveryOS) behind a
+  # password on eligible Macs. Fleet generates and escrows the
+  # password per host.
+  ###########################################################
+  enable_recovery_lock_password: true
 
   ###########################################################
   # Managed OS updates
