@@ -1,0 +1,21 @@
+- name: macOS - Bluetooth Sharing disabled (Engineering)
+  # Query from Fleet's CIS macOS 15 library:
+  # https://github.com/fleetdm/fleet/blob/main/docs/solutions/cis/macos-15/policies/cis-policy-queries.yml
+  query: |
+    SELECT 1 WHERE NOT EXISTS (
+      SELECT * FROM plist WHERE
+        path LIKE '/Users/%/Library/Preferences/ByHost/com.apple.Bluetooth.%.plist' AND
+        key = 'PrefKeyServicesEnabled' AND
+        value = '1'
+    );
+  critical: false
+  description: Bluetooth Sharing lets nearby paired devices send files to this Mac. It must stay off on Engineering Macs.
+  resolution: |
+    Fleet turns Bluetooth Sharing off automatically when this check fails.
+
+    To do it by hand: open System Settings > General > Sharing and turn off Bluetooth Sharing.
+  platform: darwin
+  labels_include_any:
+    - Engineering department
+  run_script:
+    path: ../scripts/disable-bluetooth-sharing.sh
