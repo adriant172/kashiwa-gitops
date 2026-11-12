@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "fleet": {
+      "type": "http",
+      "url": "${FLEET_URL}/api/v1/fleet/mcp",
+      "headers": {
+        "Authorization": "Bearer ${FLEET_MCP_TOKEN}"
+      }
+    }
+  }
+}
