@@ -1,0 +1,26 @@
+- name: macOS - DNS uses Cloudflare (1.1.1.1)
+  # Passes when the Mac has at least one DNS server and every DNS server
+  # it uses is Cloudflare (1.1.1.1 or 1.0.0.1). Empty rows, which
+  # dns_resolvers can return, are ignored.
+  query: |
+    SELECT 1 WHERE
+      EXISTS (
+        SELECT 1 FROM dns_resolvers
+        WHERE type = 'nameserver' AND address = '1.1.1.1'
+      )
+      AND NOT EXISTS (
+        SELECT 1 FROM dns_resolvers
+        WHERE type = 'nameserver'
+          AND address IS NOT NULL AND TRIM(address) != ''
+          AND address NOT IN ('1.1.1.1', '1.0.0.1')
+      );
+  critical: false
+  description: Every Mac must resolve DNS through Cloudflare at 1.1.1.1.
+  resolution: |
+    Fleet sets Cloudflare DNS automatically when this check fails.
+
+    To do it by hand: open System Settings > Network > (your connection) > Details > DNS, and set the DNS servers to 1.1.1.1 and 1.0.0.1.
+  platform: darwin
+  run_script:
+    path: ../scripts/set-cloudflare-dns.sh
+  webhooks_and_tickets_enabled: true
