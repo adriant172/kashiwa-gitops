@@ -49,6 +49,11 @@ org_settings:
       enable_activities_webhook: true
       destination_url: $FLEET_ACTIVITIES_WEBHOOK_URL
 
+    # How often Fleet checks for newly failing hosts and fires
+    # failing-policy webhooks (default 24h). The failing-policy
+    # webhook itself is set per fleet, under `settings` in fleets/*.yml.
+    interval: "1h"
+
   fleet_desktop:
     ###########################################################
     # Where end users land when they click the Fleet icon in their

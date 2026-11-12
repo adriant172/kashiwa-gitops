@@ -15,6 +15,30 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 name: "💻 Workstations"
+
+###########################################################
+# Failing-policy alerts
+#
+# POST to the same webhook listener as the activity feed
+# (FLEET_ACTIVITIES_WEBHOOK_URL repo secret) when hosts start
+# failing a policy in this fleet. Fleet checks every hour
+# (`webhook_settings.interval` in default.yml).
+#
+# Fleet only accepts numeric policy IDs here. When you add a
+# policy to this fleet, add its ID below (find it in the Fleet
+# UI or with `fleetctl get policies --fleet "💻 Workstations"`).
+###########################################################
+settings:
+  webhook_settings:
+    failing_policies_webhook:
+      enable_failing_policies_webhook: true
+      destination_url: $FLEET_ACTIVITIES_WEBHOOK_URL
+      host_batch_size: 0
+      policy_ids:
+        - 1  # macOS - All available software updates installed
+        - 31 # macOS - Bluetooth Sharing disabled (Engineering)
+        - 38 # Windows - Company wallpaper set
+
 controls:
   setup_experience:
     ###########################################################
