@@ -1,0 +1,9 @@
+{
+  "Type": "com.apple.configuration.softwareupdate.settings",
+  "Identifier": "com.kashiwa.config.softwareupdate.defer-major",
+  "Payload": {
+    "Deferrals": {
+      "MajorPeriodInDays": 90
+    }
+  }
+}
