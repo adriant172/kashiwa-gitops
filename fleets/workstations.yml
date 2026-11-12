@@ -15,6 +15,27 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 name: "💻 Workstations"
+
+###########################################################
+# Failing-policy alerts
+#
+# POST to the same webhook listener as the activity feed
+# (FLEET_ACTIVITIES_WEBHOOK_URL repo secret) when hosts start
+# failing a policy in this fleet. Fleet checks every hour
+# (`webhook_settings.interval` in default.yml).
+#
+# Which policies alert is set on each policy with
+# `webhooks_and_tickets_enabled: true` (in platforms/*/policies/).
+# Add it to every new policy. Don't add `policy_ids` here: it's
+# deprecated, and fleetctl rejects mixing the two.
+###########################################################
+settings:
+  webhook_settings:
+    failing_policies_webhook:
+      enable_failing_policies_webhook: true
+      destination_url: $FLEET_ACTIVITIES_WEBHOOK_URL
+      host_batch_size: 0
+
 controls:
   setup_experience:
     ###########################################################

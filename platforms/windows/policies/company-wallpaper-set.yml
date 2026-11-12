@@ -26,3 +26,4 @@
   platform: windows
   run_script:
     path: ../scripts/set-company-wallpaper.ps1
+  webhooks_and_tickets_enabled: true
