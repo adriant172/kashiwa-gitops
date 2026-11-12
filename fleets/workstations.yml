@@ -69,6 +69,11 @@ controls:
     configuration_profiles:
       - paths: ../platforms/macos/declaration-profiles/*.json
       - paths: ../platforms/macos/configuration-profiles/*.mobileconfig
+      # Engineering-only profiles live in a subfolder so the glob above
+      # doesn't deliver them to every Workstations Mac.
+      - path: ../platforms/macos/configuration-profiles/engineering/lock-bluetooth-sharing.mobileconfig
+        labels_include_any:
+          - Engineering department
   windows_settings:
     configuration_profiles:
       - paths: ../platforms/windows/configuration-profiles/*.xml
