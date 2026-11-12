@@ -34,3 +34,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Local secrets and personal Claude settings
+.env
+.claude/settings.local.json
