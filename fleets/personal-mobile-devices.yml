@@ -64,9 +64,14 @@ controls:
   # ios_updates:
   #   deadline: "2030-04-01"
   #   minimum_version: "18.5"
-  # ipados_updates:
-  #   deadline: "2030-04-01"
-  #   minimum_version: "18.5"
+  #
+  # iPadOS: same rule as Workstations Macs. Nothing older than
+  # iPadOS 26.5 after the end of 2026. Apple only enforces versions it
+  # still offers, and 26.5 isn't offered anymore, so the target is 26.7.3
+  # (the only iPadOS 26 version offered as of 2026-11-12).
+  ipados_updates:
+    deadline: "2026-12-31"
+    minimum_version: "26.7.3"
 
 ###########################################################
 # Apps to make available from the Apple App Store or Google Play
