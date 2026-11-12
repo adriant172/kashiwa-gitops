@@ -1,0 +1,16 @@
+- name: Windows - Cloudflare WARP installed
+  # Passes when the Cloudflare One Client (formerly "Cloudflare WARP")
+  # is installed. Hosts that fail get it installed automatically.
+  query: |
+    SELECT 1 FROM programs
+    WHERE name = 'Cloudflare One Client' OR name LIKE 'Cloudflare WARP%';
+  critical: false
+  description: Every Windows device in this fleet must have Cloudflare WARP installed.
+  resolution: |
+    Fleet installs and configures Cloudflare WARP automatically when this check fails. No action is needed.
+  platform: windows
+  labels_include_any:
+    - x86-based Windows hosts
+  install_software:
+    fleet_maintained_app_slug: cloudflare-warp/windows
+  webhooks_and_tickets_enabled: true

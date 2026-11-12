@@ -17,6 +17,18 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 name: "📱🔐 Personal mobile devices"
+
+###########################################################
+# Failing-policy alerts (same listener as Workstations).
+# Policies opt in with `webhooks_and_tickets_enabled: true`.
+###########################################################
+settings:
+  webhook_settings:
+    failing_policies_webhook:
+      enable_failing_policies_webhook: true
+      destination_url: $FLEET_ACTIVITIES_WEBHOOK_URL
+      host_batch_size: 0
+
 controls:
   setup_experience:
     ###########################################################
@@ -74,9 +86,35 @@ controls:
     minimum_version: "26.7.3"
 
 ###########################################################
-# Apps to make available from the Apple App Store or Google Play
+# Policies
+#
+# Kept in a fleet-specific subfolder so the Workstations
+# `platforms/windows/policies/*.yml` glob doesn't pick them up.
+###########################################################
+policies:
+  # Installs Cloudflare WARP on any Windows device that doesn't have it.
+  - path: ../platforms/windows/policies/personal-mobile-devices/cloudflare-warp-installed.yml
+
+###########################################################
+# Software
 ###########################################################
 software:
+  fleet_maintained_apps:
+    # Cloudflare WARP (Cloudflare One Client) for Windows. Not in
+    # self-service: the "Windows - Cloudflare WARP installed" policy
+    # installs it automatically. The catalog installer is x64, so it's
+    # limited to x86-based Windows hosts.
+    - slug: cloudflare-warp/windows
+      self_service: false
+      labels_include_any:
+        - x86-based Windows hosts
+      # Runs after every WARP install to apply our configuration.
+      post_install_script:
+        path: ../platforms/windows/software/cloudflare-warp-post-install.ps1
+
+  ###########################################################
+  # Apps to make available from the Apple App Store or Google Play
+  ###########################################################
   app_store_apps:
     ###########################################################
     # iOS apps
