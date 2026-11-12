@@ -33,6 +33,17 @@ org_settings:
     ###########################################################
     server_url: $FLEET_URL
 
+  fleet_desktop:
+    ###########################################################
+    # Where end users land when they click the Fleet icon in their
+    # menu bar / system tray and choose "About Fleet" (the
+    # "what's being managed?" transparency link).
+    #
+    # Read more:
+    #   • https://fleetdm.com/docs/configuration/yaml-files#fleet-desktop
+    ###########################################################
+    transparency_url: https://pointerpointer.com
+
   ###########################################################
   # Uncomment to use single sign-on (SSO) for admins accessing Fleet.
   #
